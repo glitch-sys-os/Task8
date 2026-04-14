@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internship Registration</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #4facfe;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #007bff;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let name = document.forms["myForm"]["name"].value.trim();
+            let email = document.forms["myForm"]["email"].value.trim();
+            let phone = document.forms["myForm"]["phone"].value.trim();
+            let course = document.forms["myForm"]["course"].value.trim();
+
+            let phoneRegex = /^[0-9]{10}$/;
+            let emailRegex = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+            if (name === "" || email === "" || phone === "" || course === "") {
+                alert("All fields are required!");
+                return false;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert("Enter a valid email!");
+                return false;
+            }
+
+            if (!phoneRegex.test(phone)) {
+                alert("Please enter a valid 10-digit phone number");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Internship Registration</h2>
+
+    <form name="myForm" action="/submit" method="POST" onsubmit="return validateForm()">
+
+        <label>Student Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="phone" maxlength="10" required>
+
+        <label>Course</label>
+        <input type="text" name="course" required>
+
+        <label>Preferred Domain</label>
+        <select name="domain" required>
+            <option value="">-- Select Domain --</option>
+            <option value="Web Development">Web Development</option>
+            <option value="Data Science">Data Science</option>
+            <option value="AI/ML">AI/ML</option>
+            <option value="Cyber Security">Cyber Security</option>
+        </select>
+
+        <br><br>
+        <button type="submit">Register Now</button>
+
+    </form>
+</div>
+
+</body>
+</html>
